@@ -1,0 +1,203 @@
+/* UNNG Design System — tokens & shared atoms */
+
+:root {
+  --c-primary-700: #0E5F4D;
+  --c-primary-50: #EAF5F1;
+  --c-gold-500: #CBA135;
+  --c-ink-900: #15231F;
+  --c-slate-600: #5D6B66;
+  --c-slate-400: #9AA8A3;
+  --c-surface-50: #F7F8F6;
+  --c-white: #FFFFFF;
+  --c-danger-600: #B42318;
+  --c-danger-50: #FEF3F2;
+  --c-success-600: #0A7A4F;
+  --c-success-50: #ECFDF5;
+  --c-info-600: #2563EB;
+  --c-info-50: #EFF6FF;
+  --c-border: #E6E8E5;
+  --c-border-soft: #EFF1ED;
+
+  --r-sm: 8px;
+  --r-md: 12px;
+  --r-lg: 16px;
+  --r-xl: 22px;
+  --r-pill: 9999px;
+
+  --s-1: 4px; --s-2: 8px; --s-3: 12px; --s-4: 16px; --s-5: 20px; --s-6: 24px; --s-7: 32px;
+
+  --shadow-card: 0 1px 2px rgba(21,35,31,0.04), 0 1px 0 rgba(21,35,31,0.03);
+  --shadow-elev: 0 8px 24px rgba(21,35,31,0.10);
+}
+
+.unng-screen, .unng-screen * {
+  font-family: 'Plus Jakarta Sans', -apple-system, system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  box-sizing: border-box;
+}
+
+.unng-screen {
+  width: 100%;
+  height: 100%;
+  background: var(--c-surface-50);
+  color: var(--c-ink-900);
+  position: relative;
+  overflow: hidden;
+  font-size: 15px;
+  letter-spacing: -0.005em;
+}
+
+/* ── Top app bar ─────────────────────────────────────────── */
+.unng-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 60px 16px 12px;
+  background: var(--c-surface-50);
+  position: relative; z-index: 5;
+}
+.unng-bar.solid { background: var(--c-white); border-bottom: 1px solid var(--c-border-soft); }
+.unng-bar-title { font-size: 17px; font-weight: 600; color: var(--c-ink-900); }
+.unng-bar-back, .unng-bar-action {
+  width: 36px; height: 36px; display: flex; align-items: center; justify-content: center;
+  border-radius: var(--r-pill); background: transparent; border: 0; color: var(--c-ink-900);
+  cursor: pointer;
+}
+.unng-bar-action.text { width: auto; padding: 0 4px; color: var(--c-primary-700); font-weight: 600; font-size: 15px; }
+
+.unng-large-title {
+  font-size: 28px; font-weight: 700; padding: 0 16px 8px;
+  letter-spacing: -0.02em; color: var(--c-ink-900);
+}
+
+/* ── Buttons ─────────────────────────────────────────────── */
+.unng-btn {
+  height: 50px; border-radius: 14px; border: 0; cursor: pointer;
+  font-size: 16px; font-weight: 600; letter-spacing: -0.01em;
+  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
+  width: 100%;
+}
+.unng-btn.primary { background: var(--c-primary-700); color: #fff; }
+.unng-btn.primary:active { background: #0a4d3f; }
+.unng-btn.secondary { background: transparent; color: var(--c-primary-700); border: 1.5px solid var(--c-primary-700); }
+.unng-btn.ghost { background: transparent; color: var(--c-primary-700); }
+.unng-btn.danger { background: var(--c-danger-600); color: #fff; }
+.unng-btn.danger-outline { background: transparent; color: var(--c-danger-600); border: 1.5px solid var(--c-danger-600); }
+.unng-btn.disabled { background: #DDE2DE; color: #9AA8A3; pointer-events: none; }
+.unng-btn.sm { height: 36px; font-size: 14px; border-radius: 10px; padding: 0 14px; width: auto; }
+
+/* ── Inputs ──────────────────────────────────────────────── */
+.unng-field { display: flex; flex-direction: column; gap: 6px; }
+.unng-label { font-size: 13px; color: var(--c-slate-600); font-weight: 500; }
+.unng-input {
+  height: 48px; background: #fff; border: 1px solid var(--c-border); border-radius: 12px;
+  padding: 0 14px; font-size: 15px; color: var(--c-ink-900); outline: none;
+  font-family: inherit;
+}
+.unng-input:focus { border-color: var(--c-primary-700); box-shadow: 0 0 0 3px var(--c-primary-50); }
+.unng-input.err { border-color: var(--c-danger-600); }
+.unng-input.err:focus { box-shadow: 0 0 0 3px var(--c-danger-50); }
+.unng-help { font-size: 12px; color: var(--c-slate-600); }
+.unng-help.err { color: var(--c-danger-600); }
+textarea.unng-input { height: auto; padding: 12px 14px; resize: none; }
+
+/* ── Cards ───────────────────────────────────────────────── */
+.unng-card {
+  background: #fff; border: 1px solid var(--c-border-soft); border-radius: 16px;
+  overflow: hidden;
+}
+
+/* ── Badges / chips ──────────────────────────────────────── */
+.unng-badge {
+  display: inline-flex; align-items: center; gap: 4px;
+  padding: 4px 10px; border-radius: var(--r-pill);
+  font-size: 12px; font-weight: 600; letter-spacing: 0.01em;
+  background: var(--c-primary-50); color: var(--c-primary-700);
+}
+.unng-badge.gold { background: rgba(203,161,53,0.14); color: #8C6E1F; }
+.unng-badge.success { background: var(--c-success-50); color: var(--c-success-600); }
+.unng-badge.danger { background: var(--c-danger-50); color: var(--c-danger-600); }
+.unng-badge.warn { background: #FEF6E3; color: #8C6E1F; }
+.unng-badge.neutral { background: #EEF1EE; color: var(--c-slate-600); }
+.unng-badge.info { background: var(--c-info-50); color: var(--c-info-600); }
+
+.unng-chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  padding: 8px 14px; border-radius: var(--r-pill);
+  background: #fff; border: 1px solid var(--c-border);
+  font-size: 13px; font-weight: 500; color: var(--c-ink-900);
+  white-space: nowrap; cursor: pointer;
+}
+.unng-chip.active { background: var(--c-primary-700); color: #fff; border-color: var(--c-primary-700); }
+
+/* ── Bottom Tabs ─────────────────────────────────────────── */
+.unng-tabs {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  background: rgba(255,255,255,0.92); backdrop-filter: blur(20px);
+  border-top: 1px solid var(--c-border-soft);
+  display: flex; padding: 8px 0 28px; z-index: 30;
+}
+.unng-tab {
+  flex: 1; display: flex; flex-direction: column; align-items: center; gap: 3px;
+  padding: 6px 0; cursor: pointer; color: var(--c-slate-600); border: 0; background: transparent;
+  font-family: inherit;
+}
+.unng-tab.active { color: var(--c-primary-700); }
+.unng-tab .lbl { font-size: 10px; font-weight: 600; letter-spacing: 0.01em; }
+
+/* ── Image placeholder blocks ────────────────────────────── */
+.unng-img {
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 700; color: rgba(255,255,255,0.92); font-size: 14px;
+  letter-spacing: 0.04em;
+}
+
+/* ── Section header ──────────────────────────────────────── */
+.unng-section-h {
+  display: flex; align-items: baseline; justify-content: space-between;
+  padding: 0 16px; margin-top: 18px; margin-bottom: 10px;
+}
+.unng-section-h h3 { font-size: 18px; font-weight: 700; color: var(--c-ink-900); margin: 0; letter-spacing: -0.01em; }
+.unng-section-h a { font-size: 14px; color: var(--c-primary-700); font-weight: 600; cursor: pointer; }
+
+/* List rows */
+.unng-list { background: #fff; border-radius: 16px; overflow: hidden; }
+.unng-row {
+  display: flex; align-items: center; gap: 12px; padding: 14px 16px;
+  border-bottom: 1px solid var(--c-border-soft);
+  cursor: pointer;
+}
+.unng-row:last-child { border-bottom: 0; }
+.unng-row .ttl { font-size: 15px; font-weight: 500; color: var(--c-ink-900); }
+.unng-row .meta { font-size: 13px; color: var(--c-slate-600); margin-top: 2px; }
+
+/* Skeleton */
+.unng-skel {
+  background: linear-gradient(90deg, #E9ECE9 0%, #F2F4F1 50%, #E9ECE9 100%);
+  background-size: 200% 100%; animation: skel 1.4s linear infinite;
+  border-radius: 8px;
+}
+@keyframes skel { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+/* utility */
+.col { display: flex; flex-direction: column; }
+.row { display: flex; flex-direction: row; }
+.gap-1 { gap: 4px; } .gap-2 { gap: 8px; } .gap-3 { gap: 12px; } .gap-4 { gap: 16px; } .gap-5 { gap: 20px; }
+.p-4 { padding: 16px; } .px-4 { padding-left: 16px; padding-right: 16px; }
+.py-3 { padding-top: 12px; padding-bottom: 12px; }
+.mt-2 { margin-top: 8px; } .mt-3 { margin-top: 12px; } .mt-4 { margin-top: 16px; } .mt-6 { margin-top: 24px; }
+.flex-1 { flex: 1; }
+.center { display: flex; align-items: center; justify-content: center; }
+.between { justify-content: space-between; }
+.items-center { align-items: center; }
+.text-c { text-align: center; }
+.muted { color: var(--c-slate-600); }
+.tiny { font-size: 12px; }
+.small { font-size: 13px; }
+.lg { font-size: 17px; }
+.bold { font-weight: 700; }
+.semibold { font-weight: 600; }
+.gold { color: var(--c-gold-500); }
+.danger { color: var(--c-danger-600); }
+.success { color: var(--c-success-600); }
+
+/* canvas tile chrome — disable iOS frame's rounded corners look-through */
+.unng-tile { background: #000; border-radius: 38px; padding: 0; }

@@ -1,0 +1,61 @@
+/* UNNG design tokens — sourced from the UI/UX spec §3.2-3.4 */
+:root {
+  /* Color tokens */
+  --un-primary-700: #0E5F4D;
+  --un-primary-600: #117560;
+  --un-primary-50:  #EAF5F1;
+  --un-gold-500:    #CBA135;
+  --un-gold-50:     #FBF4DF;
+  --un-ink-900:     #15231F;
+  --un-ink-700:     #2A3B36;
+  --un-slate-600:   #5D6B66;
+  --un-slate-400:   #98A29D;
+  --un-slate-200:   #D9DEDB;
+  --un-slate-100:   #ECEEEC;
+  --un-surface-50:  #F7F8F6;
+  --un-white:       #FFFFFF;
+  --un-danger-600:  #B42318;
+  --un-danger-50:   #FEEFEE;
+  --un-success-600: #0A7A4F;
+  --un-success-50:  #E5F4EE;
+  --un-info-600:    #2563EB;
+  --un-info-50:     #E8EEFE;
+
+  /* Radii */
+  --un-r-sm: 8px;
+  --un-r-md: 12px;
+  --un-r-lg: 16px;
+  --un-r-xl: 22px;
+  --un-r-2xl: 28px;
+
+  /* Type scale (mobile sp ≈ px) */
+  --un-display: 26px;
+  --un-h1: 22px;
+  --un-h2: 18px;
+  --un-body: 15px;
+  --un-meta: 12.5px;
+
+  --un-font: 'Plus Jakarta Sans', -apple-system, system-ui, sans-serif;
+  --un-mono: 'JetBrains Mono', ui-monospace, monospace;
+}
+
+/* Palette overrides driven by Tweaks */
+.un-theme-default {}
+.un-theme-midnight {
+  --un-primary-700: #1B3A6B;
+  --un-primary-600: #2050A0;
+  --un-primary-50:  #E9EEF8;
+  --un-gold-500:    #C9A96A;
+}
+.un-theme-coral {
+  --un-primary-700: #C24B3F;
+  --un-primary-600: #DD6256;
+  --un-primary-50:  #FCEEEC;
+  --un-gold-500:    #D4A24A;
+}
+.un-theme-mono {
+  --un-primary-700: #15231F;
+  --un-primary-600: #2A3B36;
+  --un-primary-50:  #ECEEEC;
+  --un-gold-500:    #5D6B66;
+}

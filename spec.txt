@@ -1,0 +1,1261 @@
+UNNG Mobile App UI/UX Design Specification
+UNNG
+Mobile App UI/UX Design Specification
+Android and iOS full-flow design document for AI UI generation, product design, and
+development handoff
+Item Details
+Prepared for UNNG mobile app, iOS and Android, plus web admin
+dashboard
+Purpose UI/UX design specification that can be passed to a UI/UX AI
+model, product designer, or development team to generate
+complete app flows and high-fidelity screens.
+Version 1.0 - 2026-05-05
+Design direction Modern, clean, community-first, accessible, low-click,
+mobile-native, and web-dashboard efficient.
+Source basis UNNG SRS and user flows supplied by the client.
+
+-- 1 of 19 --
+
+UNNG Mobile App UI/UX Design Specification
+1. Source Requirements Summary
+This UI/UX specification is based on the UNNG SRS and user flows provided by the client. The platform includes a
+cross-platform mobile app for iOS and Android, plus a web admin dashboard. The core product is a membership and
+community platform with events, donations, subscriptions, organizations, forums, user profiles, transactions,
+notifications, reporting, and admin management.
+Area UX Interpretation
+Primary user value Join and participate in UNNG community, discover events and
+organizations, contribute financially, and interact in forums.
+Primary admin value Manage users, events, organizations, subscriptions, transactions,
+forums, reporting, and configuration from one efficient dashboard.
+Business model UX impact Payment and membership status must be highly transparent
+because forum posting and paid access depend on
+payment/subscription state.
+Phase approach Phase 1 must include core membership, events, payments,
+organizations, forums, profile, transactions, notifications, admin
+management, and basic KPIs. Phase 2 can add QR check-in, points,
+courses, advanced analytics, refunds, push notifications, and
+organization dashboards.
+2. Design Principles and Best-Practice Decisions
+These decisions keep workflows smooth, modern, and low-friction while respecting iOS, Android, web, and
+accessibility expectations.
+Principle Decision
+Clarity before decoration Every screen must make the next best action obvious. Use one
+primary CTA per state and keep secondary actions visually quieter.
+Low-click completion Common actions should complete in 1-3 taps/clicks after the user
+reaches the relevant screen: register event, donate, subscribe,
+comment, search, filter, and view transaction.
+Progressive disclosure Show essential information first; reveal advanced filters, details,
+audit data, and moderation tools only when needed.
+Platform-native behavior Use iOS conventions on iPhone, Material Design
+navigation/components on Android, and responsive
+data-table/dashboard patterns on web.
+Accessible by default Meet WCAG 2.2 AA intent: sufficient contrast, clear focus states,
+large touch targets, keyboard navigability, dynamic type support,
+and readable labels.
+Error prevention and recovery Validate forms inline, preserve entered data, confirm destructive
+actions, and provide retry paths for payment, upload, and network
+failures.
+Trust in payments Always show amount, plan/event name, recurrence, payment
+processor, terms, and confirmation before launching Revolut Pay.
+Community safety Forum posting must make rules visible, guide users toward
+respectful content, and support moderation states without
+surprising users.
+3. Shared Visual Design System
+3.1 Brand Direction
+ Personality: trustworthy, warm, modern, community-focused, and action-oriented.
+ Layout style: clean surfaces, rounded cards, generous spacing, readable typography, clear hierarchy.
+
+-- 2 of 19 --
+
+UNNG Mobile App UI/UX Design Specification
+ Imagery: real community/event photography where possible; avoid generic corporate stock images.
+ Tone: simple, plain-language, reassuring, and non-technical.
+3.2 Color Tokens
+Token Hex Usage
+Primary 700 #0E5F4D Main CTAs, active tab, web sidebar active,
+key success moments
+Primary 50 #EAF5F1 Selected chips, success panels, subtle
+backgrounds
+Gold 500 #CBA135 Membership badges, premium plan
+accents, highlight metrics
+Ink 900 #15231F Primary text and headings
+Slate 600 #5D6B66 Secondary text, metadata, helper copy
+Surface 50 #F7F8F6 App/page background
+White #FFFFFF Cards, sheets, modal surfaces
+Danger 600 #B42318 Delete, failed payment, destructive
+warnings
+Success 600 #0A7A4F Paid, success, completed
+Info 600 #2563EB Links, neutral information states
+3.3 Typography and Spacing
+Token Mobile Web Dashboard Notes
+Display / Page title 24-28 sp 28-32 px Use for major screens only.
+Section heading 18-20 sp 20-24 px Use for grouped content.
+Body 15-16 sp 14-16 px Minimum comfortable reading
+size.
+Metadata 12-13 sp 12-13 px Dates, labels, counts; must
+remain legible.
+Touch/click targets Minimum 44x44 pt on iOS,
+48x48 dp Android, 32-40 px web
+with accessible spacing
+Never make important actions
+tiny icons without labels.
+Spacing scale 4, 8, 12, 16, 24, 32 Use consistently across mobile
+and web.
+3.4 Shared Components
+Component Visual Rule UX Rule
+Primary button Filled #0E5F4D, white label, 48-52 px/tall
+mobile, 40 px/tall web
+Use for Continue, Pay/Register, Subscribe,
+Save, Create. Only one primary button per
+view or dialog.
+Secondary button Outlined primary or neutral Use for Cancel, Learn More, View Details,
+Add Later.
+Destructive button Red text or red filled only in final
+confirmation
+Delete profile, delete forum content, disable
+user/event/org.
+Cards White with 12-16 px radius, subtle border,
+no heavy shadows
+Events, organizations, topics, plan cards,
+KPI cards.
+Bottom tabs Mobile: Home/Events, Donate, Orgs,
+Forums, Profile
+Keep persistent; avoid hiding primary
+navigation behind a menu.
+Search + filter bar Search field plus filter chips and bottom
+sheet/drawer for advanced filters
+Use on Events, Organizations, Forums,
+Users, Transactions.
+Status badges Rounded pills Paid, Unpaid, Active, Inactive, Pending,
+Failed, Refunded, Sold Out, Draft,
+Published.
+Data table Sticky header, sortable columns, filters
+above, row action menu
+Web admin lists for users, events,
+transactions, orgs, subscriptions, forums.
+Empty state Icon/illustration + specific next action No events, no transactions, no notifications,
+no organizations, no forum topics.
+Confirmation sheet/dialog Title, consequence, action summary, Cancel
++ destructive/primary action
+Used for delete, disable, payment
+confirmation, logout.
+
+-- 3 of 19 --
+
+UNNG Mobile App UI/UX Design Specification
+4. Accessibility and Inclusive Design Requirements
+Requirement Mobile App Web Dashboard
+Contrast Text and controls must meet WCAG AA
+contrast; never rely on color alone for
+status.
+Same; charts require labels/tooltips and
+non-color differentiation.
+Touch/click target Primary touch targets 44-48 pt/dp
+minimum; avoid tightly packed icon-only
+controls.
+Clickable controls at least 24 CSS px
+minimum with clear spacing; main
+controls 32-40 px.
+Screen reader All icons, images with meaning, buttons,
+tabs, chips, and form errors need accessible
+labels.
+Tables need column headers, form labels,
+focus order, and keyboard-accessible
+menus.
+Dynamic type/responsive text Layouts must survive larger text sizes
+without clipping.
+Browser zoom to 200% should remain
+usable.
+Focus visibility Native focus for mobile assistive tech;
+visible focus for web keyboard navigation.
+2 px or stronger focus ring, 3:1 contrast
+against nearby colors.
+Error handling Inline error below field, summary for long
+forms, do not clear data.
+Same; scroll/focus first error after submit.
+5. Copywriting and Microcopy Rules
+Situation Recommended Copy Pattern Avoid
+Payment review “You are about to pay $50 for Super Hero
+Subscription. Your membership becomes
+active after payment is confirmed.”
+Vague “Proceed” without amount or item.
+Upgrade prompt “Forum posting is available to active
+members. Subscribe to join the discussion.”
+Shaming or confusing paywall language.
+Payment failed “Payment was not completed. You were not
+charged by UNNG. Try again or choose
+another option.”
+Technical payment errors without next
+step.
+Delete profile “This will deactivate your account and log
+you out. Your previous forum posts may
+remain as Deleted User.”
+One-tap destructive delete.
+Empty events “No upcoming events yet. Check back soon
+or explore organizations.”
+Blank list.
+No transactions “You have no payments yet. Donations,
+subscriptions, and event payments will
+appear here.”
+“No data.”
+6. Mobile Information Architecture
+Navigation Level Items UX Decision
+Unauthenticated Splash, Onboarding, Auth Choice, Sign Up,
+Sign In, Forgot Password
+Keep guest flow linear and short. Social
+sign-in appears where platform rules
+support it.
+Bottom Tabs Home, Events, Donate, Forums, Profile Core user jobs are one tap away.
+Organizations are promoted on Home and
+searchable in a dedicated list reached from
+Home.
+Home shortcuts Membership status, Upcoming event,
+Donate/Subscribe, Organizations, Latest
+forum topics
+Home acts as a personalized dashboard
+and reduces clicks for repeat actions.
+Profile menu Edit Profile, Membership Status,
+Transactions, Notifications, Settings, Delete
+Account and history features are grouped
+in one predictable place.
+
+-- 4 of 19 --
+
+UNNG Mobile App UI/UX Design Specification
+Profile
+7. Mobile Screen Inventory - Complete List
+ID Screen Role Purpose Primary Actions Key Content
+M00 Splash / App Loading Guest/Any Show logo, check
+session, check first-
+launch flag
+Auto-route to
+onboarding, auth, or
+app; retry if
+network/session check
+fails
+Logo, small loading
+indicator, offline retry
+message
+M01 Onboarding Carousel 1 Guest Explain UNNG mission
+and community
+Continue / Skip Hero image, headline,
+1 short paragraph,
+page dots
+M02 Onboarding Carousel 2 Guest Explain membership
+and contribution value
+Continue / Skip Membership benefits
+bullets, illustration
+M03 Onboarding Carousel 3 Guest Explain events,
+forums, organizations
+Get Started / Sign In Three feature cards
+M04 Auth Choice Guest Choose sign up or sign
+in quickly
+Sign Up, Sign In,
+Continue with
+Apple/Google if
+platform allows
+Logo, concise value
+text, legal links
+M05 Sign Up Guest Create account with
+minimal friction
+Create Account Photo optional, name,
+email, password, terms
+checkbox, social
+alternative
+M06 Sign In Guest Existing user login Sign In Email, password,
+forgot password, social
+login
+M07 Forgot Password Guest Request reset email Send Reset Link Email, success state,
+resend timer
+M08 Home / Discover Signed-in Fast entry point to
+main actions and
+status
+View events, Donate,
+Join plan, Continue
+forum
+Welcome, membership
+badge, upcoming
+events, contribution
+CTA, latest forum
+topics
+M09 Events List All signed-in Browse and find
+events
+Search, filter, open
+event
+Search, filters,
+segmented
+Upcoming/Past, event
+cards
+M10 Event Details - Free All signed-in Understand event and
+register
+Register / Add to
+Calendar
+Banner, title, date,
+location, capacity,
+description, org link
+M11 Event Details - Paid All signed-in Understand cost and
+pay/register
+Pay & Register Price, payment
+explanation, refund
+note if configured
+M12 Event Payment
+Confirmation
+All signed-in Avoid payment
+mistakes before
+Revolut Pay
+Confirm & Pay Amount, event, date,
+user email, terms
+M13 Payment Processing /
+Revolut Return
+All signed-in Handle pending
+success/failure after
+Revolut Pay
+Continue / Retry Status icon, message,
+transaction reference
+M14 Event Registration
+Success
+All signed-in Confirm registration View Ticket/History,
+Add to Calendar
+Event summary, QR
+placeholder if future
+enabled
+M15 Donate & Subscribe
+Hub
+All signed-in Choose donation or
+plan quickly
+Donate, Subscribe Active status, plan
+cards, one-time
+donation card
+M16 Subscription Plan
+Details
+All signed-in Compare and choose a
+plan
+Subscribe Hero $10, Super Hero
+$50, benefits,
+recurrence, terms
+M17 One-Time Donation All signed-in Make a custom or
+preset donation
+Donate Now Preset amounts,
+custom amount, note
+optional
+M18 Contribution Checkout All signed-in Review
+donation/subscription
+before Revolut Pay
+Confirm & Pay Amount, recurrence,
+payment processor,
+access effect
+M19 Organizations List All signed-in Find UNNG-connected
+organizations
+Search/filter/open Search, category chips,
+org cards with logo
+M20 Organization Details All signed-in Learn about Open Website / Contact Logo, name, category,
+
+-- 5 of 19 --
+
+UNNG Mobile App UI/UX Design Specification
+organization and open
+link
+description, link,
+contact
+M21 Forums Categories All signed-in Browse communities Open category Category cards, topic
+counts, access badge
+M22 Forum Topic List All signed-in Read and create topics
+as allowed
+Create Topic if paid,
+Upgrade if unpaid
+Search, filters, topic
+cards, comment count,
+last updated
+M23 Forum Topic Detail All signed-in Read topic and
+comments
+Add Comment,
+Subscribe prompt,
+Edit/Delete if owner
+Topic body, media,
+author, comments,
+report/moderation
+affordance optional
+M24 Create Topic Paid user Post topic with media Publish Topic Category, title, body,
+upload images/videos,
+preview, rules
+reminder
+M25 Edit Topic / Comment Owner/Paid user Update own content
+safely
+Save Changes Existing content,
+media manager, cancel
+confirmation
+M26 Delete Topic /
+Comment
+Confirmation
+Owner/Paid user Prevent accidental
+deletion
+Delete Consequences,
+confirmation checkbox
+for topic if needed
+M27 Upgrade Prompt Unpaid user Explain why posting is
+locked
+Subscribe Benefits, plan shortcut,
+maybe continue
+reading
+M28 Profile Overview Signed-in Manage account and
+key records
+Edit Profile,
+Transactions,
+Notifications,
+Membership
+Avatar, name,
+username, paid status,
+settings list
+M29 Edit Profile Signed-in Update name/image Save Avatar upload, name,
+username readonly,
+email readonly
+M30 Membership Status Signed-in Understand current
+subscription/paid
+access
+Manage/Renew/
+Subscribe
+Plan, renewal date,
+benefits, payment
+status
+M31 Transactions List Signed-in Review payment
+history
+Open details/filter Amount, type, related
+item, status, date
+M32 Transaction Detail Signed-in Show receipt-like
+detail
+Download/Share
+receipt if supported
+Amount, status, related
+item, method,
+reference, date
+M33 Notifications List Signed-in Read activity and open
+linked content
+Open notification,
+Mark all read
+Read/unread status,
+topic/comment link
+M34 Settings Signed-in Control app
+preferences and
+account actions
+Logout, Delete Profile Notifications toggle
+future, legal, app
+version
+M35 Delete Profile Signed-in Soft-delete account
+safely
+Delete Account Warning, data
+handling copy, final
+confirmation
+M36 Offline/Error State Any Recover gracefully Retry Plain-language error,
+preserved form data
+8. Mobile Screen Specifications
+M00 - Splash / App Loading
+Field Specification
+Allowed users Guest/Any
+User goal Show logo, check session, check first-launch flag
+Primary CTA / action Auto-route to onboarding, auth, or app; retry if network/session
+check fails
+Core content Logo, small loading indicator, offline retry message
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+
+-- 6 of 19 --
+
+UNNG Mobile App UI/UX Design Specification
+Analytics events view_m00, primary_action_m00, error_m00 when relevant.
+M01 - Onboarding Carousel 1
+Field Specification
+Allowed users Guest
+User goal Explain UNNG mission and community
+Primary CTA / action Continue / Skip
+Core content Hero image, headline, 1 short paragraph, page dots
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m01, primary_action_m01, error_m01 when relevant.
+M02 - Onboarding Carousel 2
+Field Specification
+Allowed users Guest
+User goal Explain membership and contribution value
+Primary CTA / action Continue / Skip
+Core content Membership benefits bullets, illustration
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m02, primary_action_m02, error_m02 when relevant.
+M03 - Onboarding Carousel 3
+Field Specification
+Allowed users Guest
+User goal Explain events, forums, organizations
+Primary CTA / action Get Started / Sign In
+Core content Three feature cards
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m03, primary_action_m03, error_m03 when relevant.
+M04 - Auth Choice
+Field Specification
+Allowed users Guest
+User goal Choose sign up or sign in quickly
+Primary CTA / action Sign Up, Sign In, Continue with Apple/Google if platform allows
+Core content Logo, concise value text, legal links
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+
+-- 7 of 19 --
+
+UNNG Mobile App UI/UX Design Specification
+success/confirmation if applicable.
+Analytics events view_m04, primary_action_m04, error_m04 when relevant.
+M05 - Sign Up
+Field Specification
+Allowed users Guest
+User goal Create account with minimal friction
+Primary CTA / action Create Account
+Core content Photo optional, name, email, password, terms checkbox, social
+alternative
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m05, primary_action_m05, error_m05 when relevant.
+M06 - Sign In
+Field Specification
+Allowed users Guest
+User goal Existing user login
+Primary CTA / action Sign In
+Core content Email, password, forgot password, social login
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m06, primary_action_m06, error_m06 when relevant.
+M07 - Forgot Password
+Field Specification
+Allowed users Guest
+User goal Request reset email
+Primary CTA / action Send Reset Link
+Core content Email, success state, resend timer
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m07, primary_action_m07, error_m07 when relevant.
+M08 - Home / Discover
+Field Specification
+Allowed users Signed-in
+User goal Fast entry point to main actions and status
+Primary CTA / action View events, Donate, Join plan, Continue forum
+Core content Welcome, membership badge, upcoming events, contribution CTA,
+latest forum topics
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+
+-- 8 of 19 --
+
+UNNG Mobile App UI/UX Design Specification
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m08, primary_action_m08, error_m08 when relevant.
+M09 - Events List
+Field Specification
+Allowed users All signed-in
+User goal Browse and find events
+Primary CTA / action Search, filter, open event
+Core content Search, filters, segmented Upcoming/Past, event cards
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m09, primary_action_m09, error_m09 when relevant.
+M10 - Event Details - Free
+Field Specification
+Allowed users All signed-in
+User goal Understand event and register
+Primary CTA / action Register / Add to Calendar
+Core content Banner, title, date, location, capacity, description, org link
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m10, primary_action_m10, error_m10 when relevant.
+M11 - Event Details - Paid
+Field Specification
+Allowed users All signed-in
+User goal Understand cost and pay/register
+Primary CTA / action Pay & Register
+Core content Price, payment explanation, refund note if configured
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m11, primary_action_m11, error_m11 when relevant.
+M12 - Event Payment Confirmation
+Field Specification
+Allowed users All signed-in
+User goal Avoid payment mistakes before Revolut Pay
+Primary CTA / action Confirm & Pay
+Core content Amount, event, date, user email, terms
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+
+-- 9 of 19 --
+
+UNNG Mobile App UI/UX Design Specification
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m12, primary_action_m12, error_m12 when relevant.
+M13 - Payment Processing / Revolut Return
+Field Specification
+Allowed users All signed-in
+User goal Handle pending success/failure after Revolut Pay
+Primary CTA / action Continue / Retry
+Core content Status icon, message, transaction reference
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m13, primary_action_m13, error_m13 when relevant.
+M14 - Event Registration Success
+Field Specification
+Allowed users All signed-in
+User goal Confirm registration
+Primary CTA / action View Ticket/History, Add to Calendar
+Core content Event summary, QR placeholder if future enabled
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m14, primary_action_m14, error_m14 when relevant.
+M15 - Donate & Subscribe Hub
+Field Specification
+Allowed users All signed-in
+User goal Choose donation or plan quickly
+Primary CTA / action Donate, Subscribe
+Core content Active status, plan cards, one-time donation card
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m15, primary_action_m15, error_m15 when relevant.
+M16 - Subscription Plan Details
+Field Specification
+Allowed users All signed-in
+User goal Compare and choose a plan
+Primary CTA / action Subscribe
+Core content Hero $10, Super Hero $50, benefits, recurrence, terms
+
+-- 10 of 19 --
+
+UNNG Mobile App UI/UX Design Specification
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m16, primary_action_m16, error_m16 when relevant.
+M17 - One-Time Donation
+Field Specification
+Allowed users All signed-in
+User goal Make a custom or preset donation
+Primary CTA / action Donate Now
+Core content Preset amounts, custom amount, note optional
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m17, primary_action_m17, error_m17 when relevant.
+M18 - Contribution Checkout
+Field Specification
+Allowed users All signed-in
+User goal Review donation/subscription before Revolut Pay
+Primary CTA / action Confirm & Pay
+Core content Amount, recurrence, payment processor, access effect
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m18, primary_action_m18, error_m18 when relevant.
+M19 - Organizations List
+Field Specification
+Allowed users All signed-in
+User goal Find UNNG-connected organizations
+Primary CTA / action Search/filter/open
+Core content Search, category chips, org cards with logo
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m19, primary_action_m19, error_m19 when relevant.
+M20 - Organization Details
+Field Specification
+Allowed users All signed-in
+User goal Learn about organization and open link
+Primary CTA / action Open Website / Contact
+
+-- 11 of 19 --
+
+UNNG Mobile App UI/UX Design Specification
+Core content Logo, name, category, description, link, contact
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m20, primary_action_m20, error_m20 when relevant.
+M21 - Forums Categories
+Field Specification
+Allowed users All signed-in
+User goal Browse communities
+Primary CTA / action Open category
+Core content Category cards, topic counts, access badge
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m21, primary_action_m21, error_m21 when relevant.
+M22 - Forum Topic List
+Field Specification
+Allowed users All signed-in
+User goal Read and create topics as allowed
+Primary CTA / action Create Topic if paid, Upgrade if unpaid
+Core content Search, filters, topic cards, comment count, last updated
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m22, primary_action_m22, error_m22 when relevant.
+M23 - Forum Topic Detail
+Field Specification
+Allowed users All signed-in
+User goal Read topic and comments
+Primary CTA / action Add Comment, Subscribe prompt, Edit/Delete if owner
+Core content Topic body, media, author, comments, report/moderation
+affordance optional
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m23, primary_action_m23, error_m23 when relevant.
+M24 - Create Topic
+Field Specification
+Allowed users Paid user
+
+-- 12 of 19 --
+
+UNNG Mobile App UI/UX Design Specification
+User goal Post topic with media
+Primary CTA / action Publish Topic
+Core content Category, title, body, upload images/videos, preview, rules
+reminder
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m24, primary_action_m24, error_m24 when relevant.
+M25 - Edit Topic / Comment
+Field Specification
+Allowed users Owner/Paid user
+User goal Update own content safely
+Primary CTA / action Save Changes
+Core content Existing content, media manager, cancel confirmation
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m25, primary_action_m25, error_m25 when relevant.
+M26 - Delete Topic / Comment Confirmation
+Field Specification
+Allowed users Owner/Paid user
+User goal Prevent accidental deletion
+Primary CTA / action Delete
+Core content Consequences, confirmation checkbox for topic if needed
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m26, primary_action_m26, error_m26 when relevant.
+M27 - Upgrade Prompt
+Field Specification
+Allowed users Unpaid user
+User goal Explain why posting is locked
+Primary CTA / action Subscribe
+Core content Benefits, plan shortcut, maybe continue reading
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m27, primary_action_m27, error_m27 when relevant.
+
+-- 13 of 19 --
+
+UNNG Mobile App UI/UX Design Specification
+M28 - Profile Overview
+Field Specification
+Allowed users Signed-in
+User goal Manage account and key records
+Primary CTA / action Edit Profile, Transactions, Notifications, Membership
+Core content Avatar, name, username, paid status, settings list
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m28, primary_action_m28, error_m28 when relevant.
+M29 - Edit Profile
+Field Specification
+Allowed users Signed-in
+User goal Update name/image
+Primary CTA / action Save
+Core content Avatar upload, name, username readonly, email readonly
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m29, primary_action_m29, error_m29 when relevant.
+M30 - Membership Status
+Field Specification
+Allowed users Signed-in
+User goal Understand current subscription/paid access
+Primary CTA / action Manage/Renew/Subscribe
+Core content Plan, renewal date, benefits, payment status
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m30, primary_action_m30, error_m30 when relevant.
+M31 - Transactions List
+Field Specification
+Allowed users Signed-in
+User goal Review payment history
+Primary CTA / action Open details/filter
+Core content Amount, type, related item, status, date
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m31, primary_action_m31, error_m31 when relevant.
+
+-- 14 of 19 --
+
+UNNG Mobile App UI/UX Design Specification
+M32 - Transaction Detail
+Field Specification
+Allowed users Signed-in
+User goal Show receipt-like detail
+Primary CTA / action Download/Share receipt if supported
+Core content Amount, status, related item, method, reference, date
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m32, primary_action_m32, error_m32 when relevant.
+M33 - Notifications List
+Field Specification
+Allowed users Signed-in
+User goal Read activity and open linked content
+Primary CTA / action Open notification, Mark all read
+Core content Read/unread status, topic/comment link
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m33, primary_action_m33, error_m33 when relevant.
+M34 - Settings
+Field Specification
+Allowed users Signed-in
+User goal Control app preferences and account actions
+Primary CTA / action Logout, Delete Profile
+Core content Notifications toggle future, legal, app version
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m34, primary_action_m34, error_m34 when relevant.
+M35 - Delete Profile
+Field Specification
+Allowed users Signed-in
+User goal Soft-delete account safely
+Primary CTA / action Delete Account
+Core content Warning, data handling copy, final confirmation
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m35, primary_action_m35, error_m35 when relevant.
+
+-- 15 of 19 --
+
+UNNG Mobile App UI/UX Design Specification
+M36 - Offline/Error State
+Field Specification
+Allowed users Any
+User goal Recover gracefully
+Primary CTA / action Retry
+Core content Plain-language error, preserved form data
+Layout rule Use a single-column mobile layout with strong vertical hierarchy,
+top app bar where needed, and persistent bottom tabs after sign-in
+except during checkout/payment review and focused forms.
+States to generate Default, loading, empty if applicable, inline validation,
+offline/network error, permission/access denied if applicable,
+success/confirmation if applicable.
+Analytics events view_m36, primary_action_m36, error_m36 when relevant.
+9. Mobile Workflow Map and Edge Paths
+Workflow Happy Path Screens Alternate / Error Paths
+New user registration M00 -> M01 -> M02 -> M03 -> M04 -> M05 ->
+M08
+Email duplicate -> show inline error and
+deep link to M06. Weak password -> keep
+values and show password rules. Social
+auth returns missing name -> request name
+only.
+Existing user sign in M00 -> M04 -> M06 -> M08 Invalid credentials -> inline error. Forgot
+password -> M07. Disabled account ->
+contact/support message.
+Social sign-in M04/M05/M06 -> Apple on iOS or Google on
+Android -> M08
+New account created if email not found;
+existing account linked/signed in; cancelled
+auth returns to same screen.
+Free event registration M09 -> M10 -> success state M14 Sold out -> disable CTA and show waitlist
+only if future scope. Already registered ->
+show Registered badge and calendar
+action.
+Paid event registration M09 -> M11 -> M12 -> Revolut Pay -> M13 ->
+M14
+Payment failed/cancelled -> M13 retry.
+Pending -> show pending badge and
+transaction in M31.
+Donation M15 -> M17 -> M18 -> Revolut Pay -> M13 ->
+M31/M08
+Custom amount invalid -> inline validation.
+Cancelled payment -> retry or change
+amount.
+Subscription M15 -> M16 -> M18 -> Revolut Pay -> M13 ->
+M30/M08
+Activation delayed -> show pending
+membership, restrict forum posting until
+confirmed unless business rule changes.
+Organization browsing M19 -> M20 -> external link Broken external link -> show cannot open
+message. No orgs -> empty state.
+Unpaid forum reading M21 -> M22 -> M23 -> M27 if user taps
+post/comment
+If topic restricted -> show access message.
+User can continue reading public/allowed
+topics.
+Paid forum posting M21 -> M22 -> M24 -> M23 Media too large -> compress guidance.
+Category disabled while posting -> prevent
+publish and preserve draft.
+Comment and reply notification M23 add comment -> notification created ->
+M33 -> M23 anchor to comment
+Deleted topic/comment -> notification
+opens safe fallback message.
+Edit/delete own content M23 -> M25 or M26 -> M23 Ownership check fails -> hide action and
+block server-side. Deleted content updates
+counts.
+Profile update M28 -> M29 -> M28 Image upload fail -> keep name changes
+possible; retry image.
+Delete profile M28/M34 -> M35 -> logout to M04 Soft delete recommended; forum posts
+remain as Deleted User.
+View history M28 -> M31 -> M32 No transactions -> empty state with
+Donate/Event CTA.
+
+-- 16 of 19 --
+
+UNNG Mobile App UI/UX Design Specification
+10. Detailed Mobile UX Decisions by Module
+Module / Pattern Decision Reason
+Onboarding carousel 3 screens max, skip available, 1 primary
+CTA
+Do not force account creation before
+explaining value. Store first-launch
+completion locally.
+Bottom navigation 5 tabs: Home, Events, Donate, Forums,
+Profile. Organizations reached from Home
+and a Home card; if organizations become
+high-traffic, replace Home or Donate with
+Orgs based on analytics.
+Keeps core tasks one tap away while
+avoiding 6-tab overflow.
+Events cards Image, title, date, location, price badge,
+registration badge
+Tap anywhere on card opens details;
+Pay/Register only appears on detail to
+reduce accidental payments.
+Payment review Always insert a review screen before
+Revolut Pay
+Reduces disputes and allows the user to
+verify amount, recurrence, and item.
+Forum access Read allowed content first, then show
+upgrade prompt only when action is
+blocked
+Avoids dead-end paid walls and increases
+conversion through context.
+Profile actions Group by Account, Payments, Activity,
+Settings
+Makes transactions and notifications easy
+to find without deep nesting.
+11. Mobile Forms and Validation Rules
+Form Fields Validation / Defaults Submission Behavior
+Sign Up Image optional, name, email,
+password, terms checkbox
+Name required, valid email,
+unique email, password rules
+visible, image type/size limit
+Create account, generate
+username like UNNGUser0005,
+sign user in, route to Home.
+Sign In Email, password Valid email, password required Sign in and route to prior
+intended screen or Home.
+Forgot Password Email Valid email; neutral success
+copy whether or not email
+exists
+Show sent state with resend
+timer.
+Edit Profile Image, name Name required; image optional
+and validated
+Save without requiring
+password; show success toast.
+Create Topic Category, title, body,
+images/videos optional
+Paid user required; title/body
+required; media limits;
+category active
+Publish and route to topic
+detail; preserve draft on errors.
+Comment Comment body, media optional
+if allowed
+Paid user required if restricted;
+body required; media limits
+Post inline, update comment
+count, notify relevant users.
+Donation Preset or custom amount,
+optional note
+Amount positive, currency
+shown, custom amount within
+configured min/max
+Review screen, then Revolut
+Pay.
+Event Creation not in mobile N/A Admin only on web N/A
+12. Mobile Payment UX Requirements
+Payment Type Before Payment During / Return After Payment
+Paid event Show event, date, price,
+cancellation/refund note if
+configured, and Confirm & Pay.
+Revolut Pay opens. Return state
+can be successful, pending,
+failed, or cancelled.
+Register event only after
+success; create transaction for
+every attempt.
+One-time donation Show amount, donation label,
+optional note, and “one-time
+payment” copy.
+Same Revolut return handling. Show thank-you state and
+transaction history. Does not
+grant forum access unless
+
+-- 17 of 19 --
+
+UNNG Mobile App UI/UX Design Specification
+business confirms.
+Subscription Show plan, price, recurrence,
+benefits, forum-access effect,
+and terms.
+Same Revolut return handling. Activate paid/member status
+after confirmed success. Show
+membership badge.
+13. Mobile Role and Permission Matrix
+Feature Guest Registered Unpaid Paid Member Organization User
+Onboarding View N/A after first launch
+unless reset
+N/A N/A
+Events Limited/public if
+enabled
+View/search/filter/
+register/pay
+View/search/filter/
+register/pay
+Same plus org
+association if visible
+Donations/subscriptions Prompt sign in first Donate/subscribe Donate/manage status Same
+Organizations Public list if allowed View/search/filter/details Same May see linked org
+badges/details
+Forums Prompt sign in Read allowed content
+only
+Read/create/edit/delete
+own topics/comments
+Same as paid/unpaid
+status
+Profile N/A View/edit/delete/
+history/notifications
+Same plus membership
+status
+Same plus org links if
+visible
+14. Mobile Empty, Loading, Error, and Success States
+Area Empty State Loading State Error State Success State
+Events No upcoming events;
+CTA Explore
+organizations
+Skeleton event cards Could not load events;
+Retry
+Registered / paid
+confirmation
+Organizations No organizations
+available yet
+Skeleton org cards Could not load
+organizations; Retry
+External link opened
+Forums No topics in this
+category; paid users see
+Create Topic
+Skeleton topic cards Could not load topics;
+Retry
+Topic/comment posted
+Transactions No payments yet; CTA
+Donate or View Events
+Skeleton rows Could not load
+transactions; Retry
+Receipt displayed
+Notifications No notifications yet Skeleton notification
+rows
+Could not load
+notifications; Retry
+Marked as read/opened
+related content
+Profile image upload Default avatar Upload progress Upload failed; Retry Profile updated
+15. Mobile Edge Cases and Loophole Prevention
+Scenario Required UX / System Behavior
+Network unavailable Show non-blocking offline banner where possible; preserve form
+input; retry button on blocking screens.
+Session expired Redirect to sign in with message; after login return to intended
+screen when safe.
+Payment pending Create pending transaction; show pending state; do not grant paid-
+only permissions until confirmed unless business decides
+otherwise.
+Payment failed/cancelled Show clear failure/cancelled copy, retry payment, change payment
+item, or return safely.
+Duplicate account email Do not expose whether account exists beyond normal sign-up
+error; suggest sign in/reset password.
+Event sold out Disable registration CTA; show Sold Out badge and capacity
+details.
+Event disabled after user opens detail Prevent registration/payment and show event no longer available.
+Category disabled while user creates topic Block publish, preserve draft, route back to available categories.
+
+-- 18 of 19 --
+
+UNNG Mobile App UI/UX Design Specification
+User tries to edit another user content Hide actions client-side and enforce server-side permission denial.
+Deleted user forum content Show author as Deleted User; preserve content unless
+moderation/legal rules require removal.
+Admin disables user User cannot sign in or post; preserve historical transactions and
+content.
+Organization inactive Hide from app list, keep relationships and admin record.
+Large media upload Show size/type rules before upload; progress, cancel, retry;
+graceful compression if supported.
+Specific-user topic access Topic hidden unless user is in access list or admin. Direct link
+shows no-access state.
+16. Mobile AI Design Generator Instructions
+Generate complete high-fidelity iOS and Android flows for the UNNG mobile app using the screen inventory and
+workflow tables in this document. Use a modern community-membership visual style with deep green primary color
+(#0E5F4D), gold membership accent (#CBA135), rounded cards, clean typography, accessible contrast, and platform-
+native components. Produce every listed screen, every empty/loading/error/success state, and every alternate path.
+Prioritize minimal taps: key user actions should be visible in context and should not require deep menus. Keep iOS
+and Android visually consistent but use native navigation, sheets, permission prompts, social sign-in, date pickers,
+and accessibility behavior for each platform.
+17. Mobile Design QA Checklist
+ Every screen ID M00-M36 has a default, loading, error, and relevant empty/success state.
+ Every destructive action has confirmation and explains consequence.
+ Every payment flow has a review screen before Revolut Pay and a clear return state after Revolut Pay.
+ Unpaid users can read allowed forum content but cannot accidentally post; upgrade prompt appears
+contextually.
+ Users can finish common tasks in 1-3 taps from the relevant tab.
+ All tables/lists have search or filters where useful: events, organizations, topics, transactions, notifications.
+ All permission restrictions are reflected in UI and must be enforced by backend.
+ All text supports dynamic type and all controls meet mobile touch target requirements.
+ iOS uses Apple-native conventions; Android uses Material-native conventions while preserving the shared brand.
+18. Reference Best-Practice Sources Used
+ Apple Human Interface Guidelines - platform-native iOS interaction and navigation guidance.
+ Google Material Design - Android component and interaction guidance.
+ Nielsen Norman Group mobile UX and form usability guidance - clear information architecture, reduced
+cognitive load, and low-friction forms.
+ W3C WCAG 2.2 and WCAG-to-mobile guidance - accessibility requirements for contrast, focus, target size, labels,
+and keyboard/screen-reader support.
+
+-- 19 of 19 --
+
